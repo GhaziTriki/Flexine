@@ -19,7 +19,6 @@ package org.lionart.flexine.field
     import flash.errors.IllegalOperationError;
 
     import org.lionart.commons.lang.Enum;
-    import org.lionart.commons.lang.reflect.Clazz;
     import org.lionart.commons.lang.reflect.Field;
     import org.lionart.commons.lang.reflect.utils.ReflectionTools;
     import org.lionart.flexine.db.DatabaseType;
@@ -49,6 +48,7 @@ package org.lionart.flexine.field
         private var _throwIfNull : Boolean;
         private var _format : String;
         private var _unique : Boolean;
+        private var _uniqueCombo : Boolean;
         private var _indexName : String;
         private var _uniqueIndexName : String;
         private var _foreignAutoRefresh : Boolean;
@@ -296,6 +296,20 @@ package org.lionart.flexine.field
         }
 
         /**
+         * @see DatabaseField#uniqueCombo()
+         */
+        public function get uniqueCombo():Boolean
+        {
+            return _uniqueCombo;
+        }
+
+        public function set uniqueCombo(value:Boolean):void
+        {
+            _uniqueCombo = value;
+        }
+
+
+        /**
          * @see DatabaseField#indexName()
          */
         public function get indexName() : String
@@ -440,6 +454,7 @@ package org.lionart.flexine.field
                 config.format = null;
             }
             config.unique = databaseField.unique;
+            config.uniqueCombo = databaseField.uniqueCombo;
 
             // add in the index information
             config.indexName = findIndexName(tableName, databaseField.indexName, databaseField.index, config);

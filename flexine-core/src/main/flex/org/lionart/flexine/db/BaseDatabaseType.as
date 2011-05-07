@@ -87,165 +87,17 @@ package org.lionart.flexine.db
          */
         public function loadDriver() : void
         {
-        /*var className : String = getDriverClassName();
-           if (className != null) {
-           // this instantiates the driver class which wires in the JDBC glue
-           try
-           {
-           Class.forName(className);
-           }
-           catch (ClassNotFoundException e)
-           {
-           throw SqlExceptionUtil.create("Driver class was not found for " + getDatabaseName()
-           + " database.  Missing jar with class " + className + ".", e);
-           }
-         }*/
         }
 
         public function appendColumnArg( sb : StringBuilder, fieldType : FieldType, additionalArgs : IList, statementsBefore : IList, statementsAfter : IList, queriesAfter : IList ) : void
         {
-        /*sb.append(' ');
-           var fieldWidth:int;
-           switch (fieldType.getDataType()) {
-
-           case DataType.STRING :
-           case UUID :
-           fieldWidth = fieldType.getWidth();
-           if (fieldWidth == 0) {
-           fieldWidth = getDefaultVarcharWidth();
-           }
-           appendStringType(sb, fieldWidth);
-           break;
-
-           case LONG_STRING :
-           appendLongStringType(sb);
-           break;
-
-           case STRING_BYTES :
-           appendByteArrayType(sb);
-           break;
-
-           case BOOLEAN :
-           case BOOLEAN_OBJ :
-           appendBooleanType(sb);
-           break;
-
-           case DATE :
-           case JAVA_DATE :
-           fieldWidth = fieldType.getWidth();
-           if (fieldWidth == 0) {
-           fieldWidth = DEFAULT_DATE_STRING_WIDTH;
-           }
-           appendDateType(sb, fieldWidth);
-           break;
-
-           case DATE_LONG :
-           case JAVA_DATE_LONG :
-           appendDateLongType(sb);
-           break;
-
-           case DATE_STRING :
-           case JAVA_DATE_STRING :
-           fieldWidth = fieldType.getWidth();
-           if (fieldWidth == 0) {
-           fieldWidth = DEFAULT_DATE_STRING_WIDTH;
-           }
-           appendDateStringType(sb, fieldWidth);
-           break;
-
-           case CHAR :
-           case CHAR_OBJ :
-           appendCharType(sb);
-           break;
-
-           case BYTE :
-           case BYTE_OBJ :
-           appendByteType(sb);
-           break;
-
-           case BYTE_ARRAY :
-           appendByteArrayType(sb);
-           break;
-
-           case SHORT :
-           case SHORT_OBJ :
-           appendShortType(sb);
-           break;
-
-           case INTEGER :
-           case INTEGER_OBJ :
-           appendIntegerType(sb);
-           break;
-
-           case LONG :
-           case LONG_OBJ :
-           appendLongType(sb);
-           break;
-
-           case FLOAT :
-           case FLOAT_OBJ :
-           appendFloatType(sb);
-           break;
-
-           case DOUBLE :
-           case DOUBLE_OBJ :
-           appendDoubleType(sb);
-           break;
-
-           case SERIALIZABLE :
-           appendSerializableType(sb);
-           break;
-
-           case ENUM_STRING :
-           appendEnumStringType(sb, fieldType);
-           break;
-
-           case ENUM_INTEGER :
-           appendEnumIntType(sb, fieldType);
-           break;
-
-           case UNKNOWN :
-           default :
-           // shouldn't be able to get here unless we have a missing case
-           throw new IllegalArgumentException("Unknown field type " + fieldType.getDataType());
-           }
-           sb.append(' ');
-
-           /*
-         * NOTE: the configure id methods must be in this order since isGeneratedIdSequence is also isGeneratedId and
-         * isId. isGeneratedId is also isId.
-         */
-        /*if (fieldType.isGeneratedIdSequence() && !fieldType.isSelfGeneratedId()) {
-           configureGeneratedIdSequence(sb, fieldType, statementsBefore, additionalArgs, queriesAfter);
-           } else if (fieldType.isGeneratedId() && !fieldType.isSelfGeneratedId()) {
-           configureGeneratedId(sb, fieldType, statementsBefore, additionalArgs, queriesAfter);
-           } else if (fieldType.isId()) {
-           configureId(sb, fieldType, statementsBefore, additionalArgs, queriesAfter);
-           }
-           // if we have a generated-id then neither the not-null nor the default make sense and cause syntax errors
-           if (!fieldType.isGeneratedId()) {
-           Object defaultValue = fieldType.getDefaultValue();
-           if (defaultValue != null) {
-           sb.append("DEFAULT ");
-           appendDefaultValue(sb, fieldType, defaultValue);
-           sb.append(' ');
-           }
-           if (fieldType.isCanBeNull()) {
-           appendCanBeNull(sb, fieldType);
-           } else {
-           sb.append("NOT NULL ");
-           }
-           if (fieldType.isUnique()) {
-           appendUniqueAfterField(sb, fieldType, statementsAfter);
-           }
-         }*/
         }
 
         public function addPrimaryKeySql( fieldTypes : Vector.<FieldType>, additionalArgs : IList, statementsBefore : IList, statementsAfter : IList, queriesAfter : IList ) : void
         {
         }
 
-        public function addUniqueSql( fieldTypes : Vector.<FieldType>, additionalArgs : IList, statementsBefore : IList, statementsAfter : IList, queriesAfter : IList ) : void
+        public function addUniqueComboSql( fieldTypes : Vector.<FieldType>, additionalArgs : IList, statementsBefore : IList, statementsAfter : IList, queriesAfter : IList ) : void
         {
         }
 

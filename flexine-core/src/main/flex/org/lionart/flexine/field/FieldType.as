@@ -19,10 +19,18 @@ package org.lionart.flexine.field
 
     public class FieldType
     {
-        private var _fieldConfig : DatabaseFieldConfig;
+        
+       // private static const AtomicInteger recursionProtection = new AtomicInteger();
+        
+        /** default suffix added to fields that are id fields of foreign objects */
+        public static const FOREIGN_ID_FIELD_SUFFIX :String = "_id";
+        public static const MAX_FOREIGN_RECURSE_LEVEL : int = 10;        
 
         private var _dataTypeConfigObj : Object;
+        
+        
 
+        private var _fieldConfig : DatabaseFieldConfig;
         /**
          * Return the format of the field.
          */

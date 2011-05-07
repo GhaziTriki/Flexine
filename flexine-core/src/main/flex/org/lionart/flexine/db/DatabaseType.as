@@ -60,7 +60,7 @@ package org.lionart.flexine.db
         /**
          * Appends information about unique field(s) to the additional-args or other lists.
          */
-        function addUniqueSql( fieldTypes : Vector.<FieldType>, additionalArgs : IList, statementsBefore : IList, statementsAfter : IList, queriesAfter : IList ) : void;
+        function addUniqueComboSql( fieldTypes : Vector.<FieldType>, additionalArgs : IList, statementsBefore : IList, statementsAfter : IList, queriesAfter : IList ) : void;
 
         /**
          * Takes a {@link FieldType} and adds the necessary statements to the before and after lists necessary so that the

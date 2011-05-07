@@ -47,8 +47,8 @@ package org.lionart.flexine.field
     {
         // this special string is used as a .equals check to see if no default was specified
         public static const NO_DEFAULT : String = "__flexine__ no default value string was specified";
-		
-		public static const NAME : String = "DatabaseField";
+
+        public static const NAME : String = "DatabaseField";
 
         private var _columnName : String = "";
 
@@ -311,7 +311,9 @@ package org.lionart.flexine.field
 
         /**
          * Set this to be true (default false) to have the database insure that the column is unique to all rows in the
-         * table. Use this when you wan a field to be unique even if it is not the identify field.
+         * table. Use this when you wan a field to be unique even if it is not the identify field. For example, if you have
+         * the firstName and lastName fields, both with unique=true and you have "Bob", "Smith" in the database, you cannot
+         * insert either "Bob", "Jones" or "Kevin", "Smith".
          */
         public function get unique() : Boolean
         {
@@ -322,7 +324,26 @@ package org.lionart.flexine.field
         {
             _unique = value;
         }
+        
+        private var _uniqueCombo : Boolean = false;
+        
+        /**
+         * Set this to be true (default false) to have the database insure that _all_ of the columns marked with this as
+         * true will together be unique. For example, if you have the firstName and lastName fields, both with unique=true
+         * and you have "Bob", "Smith" in the database, you cannot insert another "Bob", "Smith" but you can insert "Bob",
+         * "Jones" and "Kevin", "Smith".
+         */
+        public function get uniqueCombo():Boolean
+        {
+            return _uniqueCombo;
+        }
 
+        public function set uniqueCombo(value:Boolean):void
+        {
+            _uniqueCombo = value;
+        }
+
+        
         private var _index : Boolean = false;
 
         /**
