@@ -3,7 +3,7 @@
     <groupId>org.lionart.flexine</groupId>
     <artifactId>flexine-bundle</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>swc</packaging>
+    <packaging>pom</packaging>
     <name>flexine-bundle</name>
     <description>flexine-bundle</description>
     <build>
@@ -160,4 +160,10 @@
             <type>swc</type>
         </dependency>
     </dependencies>
+
+    <modules>
+        <module>flexine-core</module>
+        <module>flexine-air</module>
+    </modules>
+
 </project>
