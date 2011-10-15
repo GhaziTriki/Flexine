@@ -16,11 +16,10 @@
  */
 package org.lionart.flexine.air.apptools
 {
-    import org.lionart.flexine.db.BaseSqliteDatabaseType;
 
-    public class SqliteAirDatabaseType extends BaseSqliteDatabaseType
+    public class FlexineConfigUtil
     {
-        public function SqliteAirDatabaseType()
+        public function FlexineConfigUtil()
         {
         }
     }

@@ -14,26 +14,13 @@
    You should have received a copy of the GNU General Public License
    along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.lionart.flexine.air
+package org.lionart.flexine.db
 {
-    import flash.data.SQLStatement;
 
-    import org.lionart.flexine.support.CompiledStatement;
-
-    public class AirCompiledStatement implements CompiledStatement
+    public class SqliteAirDatabaseType extends BaseSqliteDatabaseType
     {
-
-        private var _decoratedStatement : SQLStatement;
-
-        //private var _type : StatementType;
-
-        public function AirCompiledStatement( sql : String, connection : AirSQLConnection /*, type : StatementType */ )
+        public function SqliteAirDatabaseType()
         {
-            _decoratedStatement = new SQLStatement();
-            _decoratedStatement.sqlConnection = connection.connection;
-            _decoratedStatement.text = sql;
-            //_type = type;
         }
-
     }
 }

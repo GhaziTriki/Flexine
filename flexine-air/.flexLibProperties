@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="org.lionart.flexine.air.apptools.SqliteAirDatabaseType"/>
-    <classEntry path="org.lionart.flexine.air.AirSQLConnection"/>
     <classEntry path="org.lionart.flexine.air.AirCompiledStatement"/>
+    <classEntry path="org.lionart.flexine.air.AirSQLConnection"/>
+    <classEntry path="org.lionart.flexine.db.SqliteAirDatabaseType"/>
+    <classEntry path="org.lionart.flexine.air.AirConnectionSource"/>
+    <classEntry path="org.lionart.flexine.air.AirDatabaseResults"/>
+    <classEntry path="org.lionart.flexine.air.AirLog"/>
+    <classEntry path="org.lionart.flexine.air.apptools.OpenHelperManager"/>
+    <classEntry path="org.lionart.flexine.air.apptools.FlexineConfigUtil"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

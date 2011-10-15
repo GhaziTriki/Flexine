@@ -16,24 +16,14 @@
  */
 package org.lionart.flexine.air
 {
-    import flash.data.SQLStatement;
+    import org.lionart.flexine.support.BaseConnectionSource;
+    import org.lionart.flexine.support.ConnectionSource;
 
-    import org.lionart.flexine.support.CompiledStatement;
-
-    public class AirCompiledStatement implements CompiledStatement
+    public class AirConnectionSource extends BaseConnectionSource implements ConnectionSource
     {
-
-        private var _decoratedStatement : SQLStatement;
-
-        //private var _type : StatementType;
-
-        public function AirCompiledStatement( sql : String, connection : AirSQLConnection /*, type : StatementType */ )
+        public function AirConnectionSource()
         {
-            _decoratedStatement = new SQLStatement();
-            _decoratedStatement.sqlConnection = connection.connection;
-            _decoratedStatement.text = sql;
-            //_type = type;
+            super();
         }
-
     }
 }
