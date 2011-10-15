@@ -21,6 +21,7 @@ package org.lionart.flexine.field
     import mx.formatters.DateFormatter;
 
     import org.as3commons.lang.Enum;
+    import org.lionart.flexine.field.types.DateStringFormatConfig;
     import org.lionart.flexine.misc.SqlExceptionUtil;
     import org.lionart.flexine.support.DatabaseResults;
 

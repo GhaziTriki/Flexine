@@ -30,7 +30,7 @@ package org.lionart.flexine.logger
          */
         public function LoggerFactory()
         {
-            var log : Log = new Log();
+            //var log : Log = new Log();
         }
 
     }

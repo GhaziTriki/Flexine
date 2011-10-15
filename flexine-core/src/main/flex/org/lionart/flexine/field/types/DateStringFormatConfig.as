@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.lionart.flexine.field
+package org.lionart.flexine.field.types
 {
     import mx.formatters.DateFormatter;
     import mx.resources.ResourceManager;
@@ -22,7 +22,7 @@ package org.lionart.flexine.field
     /**
      * Configuration information for the {#DATE_STRING} type.
      */
-    internal class DateStringFormatConfig
+    public class DateStringFormatConfig
     {
         private var dateFormatStr : String;
 
