@@ -14,22 +14,42 @@
    You should have received a copy of the GNU General Public License
    along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.lionart.flexine.db
+package org.lionart.flexine.statement
 {
+    import org.lionart.flexine.dao.CloseableIterator;
 
-    /**
-     * Sqlite database type information used to create the tables, etc..
-     * 
-     * <p>
-     * NOTE: We need this here because the Android version subclasses it.
-     * 
-     * @author Ghazi Triki
-     */
-    public class BaseSqliteDatabaseType extends BaseDatabaseType
+    public class SelectIterator implements CloseableIterator
     {
-        public function BaseSqliteDatabaseType()
+        public function SelectIterator()
         {
-            super();
+        }
+
+        public function close() : void
+        {
+        }
+
+        public function hasNext() : Boolean
+        {
+            return false;
+        }
+
+        public function next() : Object
+        {
+            return null;
+        }
+
+        public function remove() : void
+        {
+        }
+
+        public function first() : void
+        {
+            // TODO Auto-generated method stub
+        }
+
+        public function last() : void
+        {
+            // TODO Auto-generated method stub
         }
     }
 }

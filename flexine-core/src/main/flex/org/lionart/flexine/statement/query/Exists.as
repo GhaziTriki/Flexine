@@ -16,24 +16,24 @@
  */
 package org.lionart.flexine.statement.query
 {
-    import org.lionart.commons.lang.StringBuilder;
+    import org.as3commons.lang.StringBuffer;
     import org.lionart.flexine.db.DatabaseType;
     import org.lionart.flexine.statement.ArgumentHolder;
-    
+
     /**
      * Internal class handling the SQL 'EXISTS' query part. Used by {@link Where#exists}.
-     * 
+     *
      * @author Ghazi Triki
      */
     public class Exists implements Clause
     {
         //private var _subQueryBuilder :  InternalQueryBuilderWrapper;
-        
+
         public function Exists()
         {
         }
 
-        public function appendSql( databaseType : DatabaseType, sb : StringBuilder, argList : Vector.<ArgumentHolder> ) : void
+        public function appendSql( databaseType : DatabaseType, sb : StringBuffer, argList : Vector.<ArgumentHolder> ) : void
         {
         }
     }

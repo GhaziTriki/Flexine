@@ -16,7 +16,8 @@
  */
 package org.lionart.flexine.table
 {
-    import org.lionart.commons.lang.reflect.Constructor;
+    import org.as3commons.lang.ClassUtils;
+    import org.as3commons.reflect.Constructor;
     import org.lionart.flexine.dao.Dao;
     import org.lionart.flexine.field.FieldType;
     import org.lionart.flexine.misc.BaseDaoEnabled;
@@ -55,7 +56,7 @@ package org.lionart.flexine.table
             try
             {
                 // create our instance
-                var instance : * = constructor.newInstance() as _dataClass;
+                var instance : * = ClassUtils.newInstance(constructor.declaringType.clazz) as _dataClass;
                 if (instance is BaseDaoEnabled)
                 {
                     var daoEnabled : BaseDaoEnabled = BaseDaoEnabled(instance);
@@ -65,7 +66,7 @@ package org.lionart.flexine.table
             }
             catch ( e : Error )
             {
-                throw SqlExceptionUtil.create("Could not create object for " + constructor.declaringClass, e.message);
+                throw SqlExceptionUtil.create("Could not create object for " + constructor.declaringType.clazz, e.message);
             }
         }
 

@@ -16,7 +16,7 @@
  */
 package org.lionart.flexine.statement.query
 {
-    import org.lionart.commons.lang.StringBuilder;
+    import org.as3commons.lang.StringBuffer;
     import org.lionart.flexine.db.DatabaseType;
     import org.lionart.flexine.statement.ArgumentHolder;
 
@@ -30,7 +30,7 @@ package org.lionart.flexine.statement.query
         /**
          * Add to the string-builder the appropriate SQL for this clause.
          */
-        function appendSql( databaseType : DatabaseType, sb : StringBuilder, argList : Vector.<ArgumentHolder> ) : void;
+        function appendSql( databaseType : DatabaseType, sb : StringBuffer, argList : Vector.<ArgumentHolder> ) : void;
     }
 }
 

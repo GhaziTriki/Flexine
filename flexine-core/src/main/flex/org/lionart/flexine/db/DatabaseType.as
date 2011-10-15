@@ -18,7 +18,7 @@ package org.lionart.flexine.db
 {
     import mx.collections.IList;
 
-    import org.lionart.commons.lang.StringBuilder;
+    import org.as3commons.lang.StringBuffer;
     import org.lionart.flexine.field.DataType;
     import org.lionart.flexine.field.FieldConverter;
     import org.lionart.flexine.field.FieldType;
@@ -50,7 +50,7 @@ package org.lionart.flexine.db
          * executed before or afterwards depending on the configurations. The database can also add to the list of queries
          * that will be performed afterward to test portions of the config.
          */
-        function appendColumnArg( sb : StringBuilder, fieldType : FieldType, additionalArgs : IList, statementsBefore : IList, statementsAfter : IList, queriesAfter : IList ) : void;
+        function appendColumnArg( sb : StringBuffer, fieldType : FieldType, additionalArgs : IList, statementsBefore : IList, statementsAfter : IList, queriesAfter : IList ) : void;
 
         /**
          * Appends information about primary key field(s) to the additional-args or other lists.
@@ -72,13 +72,13 @@ package org.lionart.flexine.db
          * Add a entity-name word to the string builder wrapped in the proper characters to escape it. This avoids problems
          * with table, column, and sequence-names being reserved words.
          */
-        function appendEscapedEntityName( sb : StringBuilder, word : String ) : void;
+        function appendEscapedEntityName( sb : StringBuffer, word : String ) : void;
 
         /**
          * Add the word to the string builder wrapped in the proper characters to escape it. This avoids problems with data
          * values being reserved words.
          */
-        function appendEscapedWord( sb : StringBuilder, word : String ) : void;
+        function appendEscapedWord( sb : StringBuffer, word : String ) : void;
 
         /**
          * Return the name of an ID sequence based on the tabelName and the fieldType of the id.
@@ -126,7 +126,7 @@ package org.lionart.flexine.db
          * types, the offset is an argument to the LIMIT so the offset value (which could be null or not) is passed in. The
          * database type can choose to ignore it.
          */
-        function appendLimitValue( sb : StringBuilder, limit : int, offset : int ) : void;
+        function appendLimitValue( sb : StringBuffer, limit : int, offset : int ) : void;
 
         /**
          * Return true if the database supports the OFFSET SQL command in some form.
@@ -142,18 +142,18 @@ package org.lionart.flexine.db
         /**
          * Append to the string builder the necessary SQL to start the results at a certain row number.
          */
-        function appendOffsetValue( sb : StringBuilder, offset : int ) : void;
+        function appendOffsetValue( sb : StringBuffer, offset : int ) : void;
 
         /**
          * Append the SQL necessary to get the next-value from a sequence. This is only necessary if
          * {@link #isIdSequenceNeeded} is true.
          */
-        function appendSelectNextValFromSequence( sb : StringBuilder, sequenceName : String ) : void;
+        function appendSelectNextValFromSequence( sb : StringBuffer, sequenceName : String ) : void;
 
         /**
          * Append the SQL necessary to properly finish a CREATE TABLE line.
          */
-        function appendCreateTableSuffix( sb : StringBuilder ) : void;
+        function appendCreateTableSuffix( sb : StringBuffer ) : void;
 
         /**
          * Returns true if a 'CREATE TABLE' statement should return 0. False if > 0.
@@ -199,6 +199,22 @@ package org.lionart.flexine.db
          * Returns true if the table creation IF NOT EXISTS syntax is supported.
          */
         function isCreateIfNotExistsSupported() : Boolean;
+
+    /**
+     * Returns true if we have to select the value of the sequence before we insert a new data row.
+     */
+         //function isSelectSequenceBeforeInsert() : Boolean;
+
+    /**
+     * Does the database support the {@link DatabaseField#allowGeneratedIdInsert()} setting which allows people to
+     * insert values into generated-id columns.
+     */
+         //function isAllowGeneratedIdInsertSupported() : Boolean;
+
+    /**
+     * Return the name of the database for logging purposes.
+     */
+         //function getDatabaseName() : String;
     }
 }
 

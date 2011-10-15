@@ -16,20 +16,24 @@
  */
 package org.lionart.flexine.dao
 {
+    import org.as3commons.lang.IIterator;
+
 
     /**
-     * The definition of the Database Access Objects that handle the reading and writing a class from the database. Kudos to
-     * Robert A. for the general concept of this hierarchy.
+     * Extension to Iterator to provide a close() method. This should be in the JDK.
      *
-     * @param T
-     *            The class that the code will be operating on.
-     * @param ID
-     *            The class of the ID column associated with the class. The T class does not require an ID field. The class
-     *            needs an ID parameter however so you can use Void or Object to satisfy the compiler.
+     * <p>
+     * <b>NOTE:</b> You must call {CloseableIterator#close()} method when you are done otherwise the underlying SQL
+     * statement and connection may be kept open.
+     * </p>
+     *
      * @author Ghazi Triki
      */
-    public interface Dao
+    public interface CloseableIterator extends IIterator
     {
-
+        /**
+         * Close any underlying SQL statements.
+         */
+        function close() : void;
     }
 }

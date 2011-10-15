@@ -21,7 +21,7 @@ package org.lionart.flexine.db
 
     import mx.collections.IList;
 
-    import org.lionart.commons.lang.StringBuilder;
+    import org.as3commons.lang.StringBuffer;
     import org.lionart.flexine.field.DataType;
     import org.lionart.flexine.field.FieldConverter;
     import org.lionart.flexine.field.FieldType;
@@ -89,7 +89,7 @@ package org.lionart.flexine.db
         {
         }
 
-        public function appendColumnArg( sb : StringBuilder, fieldType : FieldType, additionalArgs : IList, statementsBefore : IList, statementsAfter : IList, queriesAfter : IList ) : void
+        public function appendColumnArg( sb : StringBuffer, fieldType : FieldType, additionalArgs : IList, statementsBefore : IList, statementsAfter : IList, queriesAfter : IList ) : void
         {
         }
 
@@ -105,11 +105,11 @@ package org.lionart.flexine.db
         {
         }
 
-        public function appendEscapedEntityName( sb : StringBuilder, word : String ) : void
+        public function appendEscapedEntityName( sb : StringBuffer, word : String ) : void
         {
         }
 
-        public function appendEscapedWord( sb : StringBuilder, word : String ) : void
+        public function appendEscapedWord( sb : StringBuffer, word : String ) : void
         {
         }
 
@@ -148,7 +148,7 @@ package org.lionart.flexine.db
             return false;
         }
 
-        public function appendLimitValue( sb : StringBuilder, limit : int, offset : int ) : void
+        public function appendLimitValue( sb : StringBuffer, limit : int, offset : int ) : void
         {
         }
 
@@ -162,15 +162,15 @@ package org.lionart.flexine.db
             return false;
         }
 
-        public function appendOffsetValue( sb : StringBuilder, offset : int ) : void
+        public function appendOffsetValue( sb : StringBuffer, offset : int ) : void
         {
         }
 
-        public function appendSelectNextValFromSequence( sb : StringBuilder, sequenceName : String ) : void
+        public function appendSelectNextValFromSequence( sb : StringBuffer, sequenceName : String ) : void
         {
         }
 
-        public function appendCreateTableSuffix( sb : StringBuilder ) : void
+        public function appendCreateTableSuffix( sb : StringBuffer ) : void
         {
         }
 

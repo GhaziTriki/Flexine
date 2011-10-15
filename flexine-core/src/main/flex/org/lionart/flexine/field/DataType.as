@@ -20,7 +20,7 @@ package org.lionart.flexine.field
 
     import mx.formatters.DateFormatter;
 
-    import org.lionart.commons.lang.Enum;
+    import org.as3commons.lang.Enum;
     import org.lionart.flexine.misc.SqlExceptionUtil;
     import org.lionart.flexine.support.DatabaseResults;
 
@@ -58,12 +58,17 @@ package org.lionart.flexine.field
 
         private var _classes : Vector.<Class>;
 
+        public function getClasses() : Vector.<Class>
+        {
+            return _classes;
+        }
+
         public function DataType( value : SqlType, classes : Vector.<Class> )
         {
             _sqlType = sqlType;
             // only types which have overridden the convertNumber method can be generated
             _classes = classes;
-            _value = value.getValue();
+            super(value.name);
         }
 
         public function parseDefaultString( fieldType : FieldType, defaultStr : String ) : Object
@@ -131,6 +136,26 @@ package org.lionart.flexine.field
                 return null;
             }
             return obj;
+        }
+
+        /**
+         * Static method that returns the DataType associated with the class argument or {@link #UNKNOWN} if not found.
+         */
+        public static function lookupClass( dataClass : Class ) : DataType
+        {
+            for each (var dataType : String in Enum.getValues(DataType))
+            {
+                // build a static map from class to associated type
+                for each (var dataTypeClass : Class in DataType(DataType[dataType]).getClasses())
+                {
+                    if (dataTypeClass == dataClass)
+                    {
+                        // TODO
+                        // return dataType;
+                    }
+                }
+            }
+            return OBJECT;
         }
 
         public function resultToAs( fieldType : FieldType, results : DatabaseResults, columnPos : int ) : Object
@@ -449,5 +474,5 @@ import org.lionart.flexine.support.DatabaseResults;
    return formatDate(convertDateStringConfig(fieldType), date);
    }
 
- }*/
+   }*/
 

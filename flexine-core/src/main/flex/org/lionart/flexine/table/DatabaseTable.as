@@ -42,7 +42,7 @@ package org.lionart.flexine.table
      *
      * @author Ghazi Triki
      */
-    public final class DatabaseTable
+    public class DatabaseTable
     {
         private var _tableName : String;
 

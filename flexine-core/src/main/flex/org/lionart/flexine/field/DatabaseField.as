@@ -45,11 +45,20 @@ package org.lionart.flexine.field
      */
     public final class DatabaseField
     {
-        // this special string is used as a .equals check to see if no default was specified
+        /** this special string is used as a .equals check to see if no default was specified */
         public static const NO_DEFAULT : String = "__flexine__ no default value string was specified";
 
         public static const NAME : String = "DatabaseField";
 
+        /**
+         * If you have two objects that both are {@link #foreign()} of each other and both have
+         * {@link #foreignAutoRefresh()} set to true then if one is retrieved, it will go recursive. For example, you might
+         * have a Answer with a foreign bestQuestion field and the Question with a foreign Answer. If you lookup an Answer,
+         * it will lookup and auto-refresh the Question which will lookup and auto-refresh the Answer, etc.. This is the
+         * maximum number of times it will go back and forth before stopping the auto-refresh.
+         */
+        public static const MAX_FOREIGN_LEVEL : int = 2;
+        
         private var _columnName : String = "";
 
         /**
@@ -433,7 +442,29 @@ package org.lionart.flexine.field
             _foreignAutoRefresh = value;
         }
 
+        private var _maxForeignLevel : int = MAX_FOREIGN_LEVEL;
 
+        /**
+         * Set this to be the number of times to configure a foreign object's foreign object. If you query for A and it has
+         * an foreign field B which has an foreign field C ..., then a lot of configuration information is being stored. If
+         * each of these fields is auto-refreshed, then querying for A could get expensive. Setting this value to 1 will
+         * mean that when you query for A, B will be auto-refreshed, but C will just have its id field set. This also works
+         * if A has an auto-refresh field B which has an auto-refresh field A.
+         *
+         * <p>
+         * <b>NOTE:</b> Increasing this value will result in more database transactions whenever you query for A, so use
+         * carefully.
+         * </p>
+         */
+        public function get maxForeignLevel() : int
+        {
+            return _maxForeignLevel;
+        }
+        
+        public function set maxForeignLevel(value:int):void
+        {
+            _maxForeignLevel = value;
+        }
     }
 }
 

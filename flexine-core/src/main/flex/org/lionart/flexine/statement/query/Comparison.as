@@ -16,10 +16,9 @@
  */
 package org.lionart.flexine.statement.query
 {
-    import org.lionart.commons.lang.StringBuilder;
+    import org.as3commons.lang.StringBuffer;
     import org.lionart.flexine.db.DatabaseType;
     import org.lionart.flexine.statement.ArgumentHolder;
-    import org.lionart.flexine.statement.SelectArg;
 
     /**
      * Internal interfaces which define a comparison operation.
@@ -36,11 +35,11 @@ package org.lionart.flexine.statement.query
         /**
          * Add the operation used in this comparison to the string builder.
          */
-        function appendOperation( sb : StringBuilder ) : StringBuilder;
+        function appendOperation( sb : StringBuffer ) : StringBuffer;
 
         /**
          * Add the value of the comparison to the string builder.
          */
-        function appendValue( databaseType : DatabaseType, sb : StringBuilder, selectArgList : Vector.<ArgumentHolder> ) : StringBuilder;
+        function appendValue( databaseType : DatabaseType, sb : StringBuffer, selectArgList : Vector.<ArgumentHolder> ) : StringBuffer;
     }
 }

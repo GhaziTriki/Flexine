@@ -36,8 +36,8 @@ package org.lionart.flexine.field
      */
     public final class ForeignCollectionField
     {
-		public static const NAME : String = "ForeignCollectionField";
-		
+        public static const NAME : String = "ForeignCollectionField";
+
         // FIXME : add type
         private var _eager : Boolean = false;
 
@@ -45,6 +45,12 @@ package org.lionart.flexine.field
          * Set to true if the collection is a an eager collection where all of the results should be retrieved when the
          * parent object is retrieved. Default is false (lazy) when the results will not be retrieved until you ask for the
          * iterator from the collection.
+         *
+         * <p>
+         * <b>NOTE:</b> If this is false (i.e. we have a lazy collection) then a connection is held open to the database as
+         * you iterate through the collection. This means that you need to make sure it is closed when you finish. See
+         * {@link LazyForeignCollection#iterator()} for more information.
+         * </p>
          */
         public function get eager() : Boolean
         {

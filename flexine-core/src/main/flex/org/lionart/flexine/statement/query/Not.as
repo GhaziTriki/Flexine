@@ -18,10 +18,9 @@ package org.lionart.flexine.statement.query
 {
     import flash.errors.IllegalOperationError;
 
-    import org.lionart.commons.lang.StringBuilder;
+    import org.as3commons.lang.StringBuffer;
     import org.lionart.flexine.db.DatabaseType;
     import org.lionart.flexine.statement.ArgumentHolder;
-    import org.lionart.flexine.statement.SelectArg;
 
     /**
      * Internal class handling the SQL 'NOT' boolean comparison operation. Used by {@link Where#not}.
@@ -60,7 +59,7 @@ package org.lionart.flexine.statement.query
             }
         }
 
-        public function appendSql( databaseType : DatabaseType, sb : StringBuilder, selectArgList : Vector.<ArgumentHolder> ) : void
+        public function appendSql( databaseType : DatabaseType, sb : StringBuffer, selectArgList : Vector.<ArgumentHolder> ) : void
         {
             if (_comparison == null && _exists == null)
             {

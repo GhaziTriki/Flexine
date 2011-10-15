@@ -16,7 +16,7 @@
  */
 package org.lionart.flexine.field
 {
-    import org.lionart.commons.lang.Enum;
+    import org.as3commons.lang.Enum;
 
     /**
      * The SQL data types that are supported. These are basically an enumeration of the column affinities.
@@ -24,7 +24,7 @@ package org.lionart.flexine.field
      *
      * @author Ghazi Triki
      */
-    public final class SqlType extends Enum
+    public final class SqlType extends org.as3commons.lang.Enum
     {
         public static const STRING : SqlType = new SqlType("string");
         public static const TEXT : SqlType = new SqlType("text"); // Same as String
@@ -42,7 +42,7 @@ package org.lionart.flexine.field
 
         public function SqlType( value : String )
         {
-            _value = value;
+            super(value);
         }
 
     }

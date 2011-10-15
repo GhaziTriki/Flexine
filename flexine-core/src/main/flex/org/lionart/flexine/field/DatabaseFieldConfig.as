@@ -18,8 +18,8 @@ package org.lionart.flexine.field
 {
     import flash.errors.IllegalOperationError;
 
-    import org.lionart.commons.lang.Enum;
-    import org.lionart.commons.lang.reflect.Field;
+    import org.as3commons.lang.Enum;
+    import org.as3commons.reflect.Field;
     import org.lionart.commons.lang.reflect.utils.ReflectionTools;
     import org.lionart.flexine.db.DatabaseType;
     import org.lionart.flexine.table.DatabaseTableConfig;
@@ -52,6 +52,7 @@ package org.lionart.flexine.field
         private var _indexName : String;
         private var _uniqueIndexName : String;
         private var _foreignAutoRefresh : Boolean;
+        private var _maxForeignLevel : int = DatabaseField.MAX_FOREIGN_LEVEL;
         private var _foreignCollection : Boolean;
         private var _foreignCollectionEager : Boolean;
 
@@ -67,7 +68,7 @@ package org.lionart.flexine.field
             canBeNull : Boolean, id : Boolean, generatedId : Boolean, generatedIdSequence : String, foreign : Boolean,
             foreignTableConfig : DatabaseTableConfig, useGetSet : Boolean, unknownEnumValue : Enum,
             throwIfNull : Boolean, format : String, unique : Boolean, indexName : String, uniqueIndexName : String,
-            autoRefresh : Boolean ) : void
+            autoRefresh : Boolean, maxForeignAutoRefreshLevel : int ) : void
         {
             this._columnName = columnName;
             this._dataType = dataType;
@@ -87,6 +88,7 @@ package org.lionart.flexine.field
             this._indexName = indexName;
             this._uniqueIndexName = uniqueIndexName;
             this._foreignAutoRefresh = autoRefresh;
+            this._maxForeignLevel = maxForeignAutoRefreshLevel;
         }
 
         /**
@@ -298,12 +300,12 @@ package org.lionart.flexine.field
         /**
          * @see DatabaseField#uniqueCombo()
          */
-        public function get uniqueCombo():Boolean
+        public function get uniqueCombo() : Boolean
         {
             return _uniqueCombo;
         }
 
-        public function set uniqueCombo(value:Boolean):void
+        public function set uniqueCombo( value : Boolean ) : void
         {
             _uniqueCombo = value;
         }
@@ -333,6 +335,19 @@ package org.lionart.flexine.field
         public function set uniqueIndexName( value : String ) : void
         {
             _uniqueIndexName = value;
+        }
+
+        /**
+         * @see DatabaseField#maxForeignLevel()
+         */
+        public function get maxForeignLevel() : int
+        {
+            return _maxForeignLevel;
+        }
+
+        public function set maxForeignLevel( maxForeignLevel : int ) : void
+        {
+            this._maxForeignLevel = maxForeignLevel;
         }
 
         /**
@@ -374,7 +389,7 @@ package org.lionart.flexine.field
         public static function fromField( databaseType : DatabaseType, tableName : String, field : Field ) : DatabaseFieldConfig
         {
             // first we lookup the DatabaseField annotation
-            var databaseField : DatabaseField = ReflectionTools.fillFromMetada(field.getMetaData(DatabaseField.NAME), DatabaseField) as DatabaseField;
+            var databaseField : DatabaseField = ReflectionTools.fillFromMetada(field.getMetadata(DatabaseField.NAME)[0], DatabaseField) as DatabaseField;
             if (databaseField != null)
             {
                 if (databaseField.persisted)
@@ -387,7 +402,7 @@ package org.lionart.flexine.field
                 }
             }
 
-            var foreignCollection : ForeignCollectionField = ReflectionTools.fillFromMetada(field.getMetaData(ForeignCollectionField.NAME), ForeignCollectionField) as ForeignCollectionField;
+            var foreignCollection : ForeignCollectionField = ReflectionTools.fillFromMetada(field.getMetadata(ForeignCollectionField.NAME)[0], ForeignCollectionField) as ForeignCollectionField;
             if (foreignCollection != null)
             {
                 return fromForeignCollection(databaseType, tableName, field, foreignCollection);
@@ -461,6 +476,7 @@ package org.lionart.flexine.field
             config.uniqueIndexName =
                 findIndexName(tableName, databaseField.uniqueIndexName, databaseField.uniqueIndex, config);
             config.foreignAutoRefresh = databaseField.foreignAutoRefresh;
+            config.maxForeignLevel = databaseField.maxForeignLevel;
 
             return config;
         }
@@ -498,9 +514,9 @@ package org.lionart.flexine.field
 
         private static function findMatchingEnumVal( field : Field, unknownEnumName : String ) : Enum
         {
-            for each (var enumType : String in Enum.getEnumConstants(field.type))
+            for each (var enumType : String in Enum.getValues(field.type.clazz))
             {
-                if (Enum(enumType).getValue() == unknownEnumName)
+                if (Enum(enumType).name == unknownEnumName)
                 {
                     return field.type[enumType];
                 }

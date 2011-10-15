@@ -16,6 +16,10 @@
  */
 package org.lionart.flexine.dao
 {
+    import flash.errors.IllegalOperationError;
+    import flash.utils.Dictionary;
+    
+    import org.lionart.flexine.support.ConnectionSource;
 
     /**
      * Class which caches created DAOs. Sometimes internal DAOs are used to support such features as auto-refreshing of
@@ -31,5 +35,75 @@ package org.lionart.flexine.dao
      */
     public class DaoManager
     {
+        private var classMap : Dictionary;
+        private var tableMap : Dictionary;
+        
+        /**
+         * Helper method to create a Dao object without having to define a class. This checks to see if the Dao has already
+         * been created. If not then it is a call through to {@link BaseDaoImpl#createDao(ConnectionSource, Class)}.
+         */
+        public function createDao( connectionSource : ConnectionSource, clazz : Class) : Dao
+        {
+            /*if (connectionSource == null) {
+                throw new IllegalOperationError("connectionSource argument cannot be null");
+            }
+            if (classMap == null) {
+                classMap = new Dictionary(true);
+            }
+            ClazzConnectionSource key = new ClazzConnectionSource(connectionSource, clazz);
+            var dao : Dao = classMap.get(key);
+            if (dao != null)
+            {
+                return dao;
+            }
+            
+            var databaseTable : DatabaseTable = clazz.getAnnotation(DatabaseTable.class);
+                if (databaseTable == null || databaseTable.daoClass() == Void.class
+                    || databaseTable.daoClass() == BaseDaoImpl.class) {
+                        @SuppressWarnings("deprecation")
+                        Dao<T, ?> daoTmp = BaseDaoImpl.createDao(connectionSource, clazz);
+                        dao = daoTmp;
+                    } else {
+                        Class<?> daoClass = databaseTable.daoClass();
+                        Constructor<?> daoConstructor = null;
+                        Object[] arguments = null;
+                        Constructor<?>[] constructors = daoClass.getConstructors();
+                        // look first for the constructor with a class parameter in case it is a generic dao
+                        for (Constructor<?> constructor : constructors) {
+                            Class<?>[] params = constructor.getParameterTypes();
+                            if (params.length == 2 && params[0] == ConnectionSource.class && params[1] == Class.class) {
+                                daoConstructor = constructor;
+                                arguments = new Object[] { connectionSource, clazz };
+                                break;
+                            }
+                            }
+                                // then look first for the constructor with just the ConnectionSource
+                                if (daoConstructor == null) {
+                                    for (Constructor<?> constructor : constructors) {
+                                        Class<?>[] params = constructor.getParameterTypes();
+                                        if (params.length == 1 && params[0] == ConnectionSource.class) {
+                                            daoConstructor = constructor;
+                                            arguments = new Object[] { connectionSource };
+                                            break;
+                                        }
+                                        }
+                                        }
+                                            if (daoConstructor == null) {
+                                                throw new SQLException("Could not find public constructor with ConnectionSource parameter in class "
+                                                    + daoClass);
+                                            }
+                                            try {
+                                                dao = (Dao<?, ?>) daoConstructor.newInstance(arguments);
+                                            } catch (Exception e) {
+                                                throw SqlExceptionUtil.create("Could not call the constructor in class " + daoClass, e);
+                                            }
+                                            }
+                                            
+                                            classMap.put(key, dao);
+                                            @SuppressWarnings("unchecked")
+                                            D castDao = (D) dao;
+                                            return castDao;*/
+			return null;
+        }
     }
 }
