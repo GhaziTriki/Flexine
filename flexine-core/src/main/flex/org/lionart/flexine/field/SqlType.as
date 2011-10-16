@@ -24,7 +24,7 @@ package org.lionart.flexine.field
      *
      * @author Ghazi Triki
      */
-    public final class SqlType extends org.as3commons.lang.Enum
+    public final class SqlType extends Enum
     {
         public static const STRING : SqlType = new SqlType("string");
         public static const TEXT : SqlType = new SqlType("text"); // Same as String

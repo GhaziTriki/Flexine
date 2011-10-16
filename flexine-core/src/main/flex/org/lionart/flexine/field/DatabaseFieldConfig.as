@@ -20,8 +20,8 @@ package org.lionart.flexine.field
 
     import org.as3commons.lang.Enum;
     import org.as3commons.reflect.Field;
-    import org.lionart.commons.lang.reflect.utils.ReflectionTools;
     import org.lionart.flexine.db.DatabaseType;
+    import org.lionart.flexine.misc.ReflectionUtils;
     import org.lionart.flexine.table.DatabaseTableConfig;
 
     /**
@@ -389,7 +389,7 @@ package org.lionart.flexine.field
         public static function fromField( databaseType : DatabaseType, tableName : String, field : Field ) : DatabaseFieldConfig
         {
             // first we lookup the DatabaseField annotation
-            var databaseField : DatabaseField = ReflectionTools.fillFromMetada(field.getMetadata(DatabaseField.NAME)[0], DatabaseField) as DatabaseField;
+            var databaseField : DatabaseField = ReflectionUtils.fillFromMetada(field.getMetadata(DatabaseField.NAME)[0], DatabaseField) as DatabaseField;
             if (databaseField != null)
             {
                 if (databaseField.persisted)
@@ -402,7 +402,7 @@ package org.lionart.flexine.field
                 }
             }
 
-            var foreignCollection : ForeignCollectionField = ReflectionTools.fillFromMetada(field.getMetadata(ForeignCollectionField.NAME)[0], ForeignCollectionField) as ForeignCollectionField;
+            var foreignCollection : ForeignCollectionField = ReflectionUtils.fillFromMetada(field.getMetadata(ForeignCollectionField.NAME)[0], ForeignCollectionField) as ForeignCollectionField;
             if (foreignCollection != null)
             {
                 return fromForeignCollection(databaseType, tableName, field, foreignCollection);

@@ -112,6 +112,7 @@
     <classEntry path="org.lionart.flexine.field.DatabaseFieldOther"/>
     <classEntry path="org.lionart.flexine.field.DatabaseFieldSimple"/>
     <classEntry path="org.lionart.flexine.field.DataPersisterManager"/>
+    <classEntry path="org.lionart.flexine.statement.StatementType"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
