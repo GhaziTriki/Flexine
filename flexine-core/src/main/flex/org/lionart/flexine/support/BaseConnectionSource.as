@@ -20,8 +20,27 @@ package org.lionart.flexine.support
 
     public class BaseConnectionSource implements ConnectionSource
     {
-        public function BaseConnectionSource()
+        protected var usedSpecialConnection : Boolean = false;
+        private var specialConnection : NestedConnection = new NestedConnection(null);
+
+        /**
+         * Returns the connection that has been saved or null if none.
+         */
+        protected function getSavedConnection() : DatabaseConnection
         {
+            if (!usedSpecialConnection)
+            {
+                return null;
+            }
+            var nested : NestedConnection = specialConnection;
+            if (nested == null)
+            {
+                return null;
+            }
+            else
+            {
+                return nested.connection;
+            }
         }
 
         public function getReadOnlyConnection() : DatabaseConnection
@@ -65,5 +84,29 @@ package org.lionart.flexine.support
         {
             return false;
         }
+    }
+}
+import org.lionart.flexine.support.DatabaseConnection;
+
+internal class NestedConnection
+{
+    public var connection : DatabaseConnection;
+    private var nestedC : int;
+
+    public function NestedConnection( connection : DatabaseConnection )
+    {
+        this.connection = connection;
+        this.nestedC = 1;
+    }
+
+    public function increment() : void
+    {
+        this.nestedC++;
+    }
+
+    public function decrementAndGet() : int
+    {
+        this.nestedC--;
+        return this.nestedC;
     }
 }
