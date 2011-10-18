@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Ce fichier est généré automatiquement et n'est pas destiné à être modifié. -->
+
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+                       xmlns:s="library://ns.adobe.com/flex/spark"
+                       xmlns:mx="library://ns.adobe.com/flex/mx"
+                       xmlns:flexui="flexunit.flexui.*"
+                       creationComplete="onCreationComplete()">
+    <fx:Script>
+        <![CDATA[
+            import org.lionart.flexine.testsuite.FlexineCoreTestSuite;
+            
+            public function currentRunTestSuite():Array
+            {
+                var testsToRun:Array = new Array();
+                testsToRun.push(org.lionart.flexine.testsuite.FlexineCoreTestSuite);
+                return testsToRun;
+            }
+            
+            
+            private function onCreationComplete():void
+            {
+                testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "flexine-core-unit-test");
+            }
+            
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+    </fx:Declarations>
+    <flexui:FlexUnitTestRunnerUI id="testRunner">
+    </flexui:FlexUnitTestRunnerUI>
+</s:WindowedApplication>
