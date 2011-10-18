@@ -10,7 +10,6 @@
     <classEntry path="org.lionart.flexine.field.FieldType"/>
     <classEntry path="org.lionart.flexine.field.ForeignCollectionField"/>
     <classEntry path="org.lionart.flexine.field.SqlType"/>
-    <classEntry path="org.lionart.flexine.logger.LoggerFactory"/>
     <classEntry path="org.lionart.flexine.misc.SqlExceptionUtil"/>
     <classEntry path="org.lionart.flexine.support.DatabaseResults"/>
     <classEntry path="org.lionart.flexine.table.DatabaseTable"/>
