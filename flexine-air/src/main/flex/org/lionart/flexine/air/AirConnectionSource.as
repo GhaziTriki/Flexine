@@ -16,14 +16,59 @@
  */
 package org.lionart.flexine.air
 {
+    import flash.data.SQLMode;
+
+    import org.as3commons.logging.api.ILogger;
+    import org.as3commons.logging.api.getLogger;
+    import org.lionart.flexine.db.DatabaseType;
+    import org.lionart.flexine.db.SqliteAirDatabaseType;
     import org.lionart.flexine.support.BaseConnectionSource;
     import org.lionart.flexine.support.ConnectionSource;
+    import org.lionart.flexine.support.DatabaseConnection;
 
     public class AirConnectionSource extends BaseConnectionSource implements ConnectionSource
     {
-        public function AirConnectionSource()
+        private static const logger : ILogger = getLogger(AirConnectionSource);
+        private var sqliteDatabase : Object;
+        private var connection : DatabaseConnection = null;
+        private var databaseType : DatabaseType = new SqliteAirDatabaseType();
+        private var _isOpen : Boolean = true;
+
+        public function AirConnectionSource( database : Object = null )
         {
-            super();
+            sqliteDatabase = database;
+        }
+
+        override public function getReadWriteConnection() : DatabaseConnection
+        {
+            var conn : DatabaseConnection = getSavedConnection();
+            if (conn != null)
+            {
+                return conn;
+            }
+            if (connection == null)
+            {
+                if (sqliteDatabase == null)
+                {
+                    connection = new AirSQLConnection(sqliteDatabase, SQLMode.CREATE);
+                }
+                else
+                {
+                    connection = new AirSQLConnection(sqliteDatabase, SQLMode.UPDATE);
+                }
+            }
+            return connection;
+        }
+
+        override public function close() : void
+        {
+            connection.close();
+            _isOpen = false;
+        }
+
+        override public function isOpen() : Boolean
+        {
+            return _isOpen;
         }
     }
 }
